@@ -1,3 +1,3 @@
 export default function App() {
-  return <>Hello World!</>
+  return <input data-testid="equation-field" />
 }

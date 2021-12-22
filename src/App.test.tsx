@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import App from './App'
+import userEvent from '@testing-library/user-event'
 
-test('renders learn react link', () => {
+test('type into an input field', () => {
   render(<App />)
-  const element = screen.getByText(/Hello World!/i)
-  expect(element).toBeInTheDocument()
+  const element = screen.getByTestId('equation-field')
+  userEvent.type(element, '1+1')
+  expect(element).toHaveValue('1+1')
 })
