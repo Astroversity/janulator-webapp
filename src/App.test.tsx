@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 import userEvent from '@testing-library/user-event'
 
@@ -6,8 +6,8 @@ jest.mock('./calculate')
 import calculate from './calculate'
 import { mocked } from 'jest-mock'
 
-test('type into an input field', () => {
-  mocked(calculate).mockImplementation((equation) => {
+test('type into an input field', async () => {
+  mocked(calculate).mockImplementation(async(equation) => {
     expect(equation).toBe('1+1')
     return 'w'
   })
@@ -20,5 +20,5 @@ test('type into an input field', () => {
   userEvent.click(button)
 
   const resultElement = screen.getByTestId('result')
-  expect(resultElement).toHaveTextContent('w')
+  await waitFor(() => expect(resultElement).toHaveTextContent('w'))
 })

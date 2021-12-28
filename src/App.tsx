@@ -12,8 +12,13 @@ export default function App() {
       />
       <button
         data-testid="calculate-button"
-        onClick={() => setResult(calculate(equation))}
-      />
+        onClick={async () => {
+          const result = await calculate(equation)
+          setResult(result)
+        }}
+      >
+        send
+      </button>
       <span data-testid="result">{result}</span>
     </>
   )
